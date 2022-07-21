@@ -67,9 +67,6 @@ async def style_buttons(c, m, cb=False):
         InlineKeyboardButton('S̑̈ȃ̈d̑̈', callback_data='style+sad'),
         ],[
         InlineKeyboardButton('Next »', callback_data="nxt")
-        ],[
-        InlineKeyboardButton('✅ Done', callback_data="done"),
-        InlineKeyboardButton('Close 🗑️', callback_data="dlt")
     ]]
     if not cb:
         await m.reply_text(m.text, reply_markup=InlineKeyboardMarkup(buttons), quote=True)
@@ -107,9 +104,6 @@ async def nxt(c, m):
             InlineKeyboardButton('F༙r༙o༙z༙e༙n༙', callback_data='style+frozen')
             ],[
             InlineKeyboardButton('« Back', callback_data='nxt+0')
-            ],[
-            InlineKeyboardButton('✅ Done', callback_data="done"),
-            InlineKeyboardButton('Close 🗑️', callback_data="dlt")
         ]]
         await m.answer()
         await m.message.edit_reply_markup(InlineKeyboardMarkup(buttons))
@@ -206,10 +200,3 @@ async def style(c, m):
     except:
         pass
 
-@FontBot.on_callback_query(filters.regex('^done'))
-async def done(c, m):
-    await m.delete_reply_markup()
-
-@FontBot.on_callback_query(filters.regex('^dlt'))
-async def delete(c, m):
-    await m.message.delete()
