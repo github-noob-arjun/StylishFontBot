@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='Font',
-      version='0.2.5',
+      version='0.2.6',
       description='Python module for interacting with Chatbase APIs',
       url='https://github.com/github-noob-arjun/StylishFontBot',
       author='Github',
