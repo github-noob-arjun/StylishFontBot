@@ -1,5 +1,5 @@
 import os
-from Font.plugins.fonts import Fonts
+from Font.fonts import Fonts
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from Font.Fontbot.FontBot as Client
