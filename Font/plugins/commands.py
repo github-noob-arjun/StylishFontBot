@@ -1,37 +1,34 @@
 import os
 from config import Config
-from .fonts import Fonts
-from pyrogram import Client, filters
+from Font.plugins.fonts import Fonts
+from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from Font import FontBot as Client
 
+START_TEXT = """🙌 Hello {},
 
-@Client.on_message(filters.command('start'))
-async def start(c, m):
-    owner = await c.get_users(int(Config.OWNER_ID))
-    owner_username = owner.username if owner.username else 'Ns_bot_updates'
+**I can help you to get stylish fonts.
+Just send me some text and see magic..!
 
-    # start text
-    text = f"""Hey! {m.from_user.mention(style='md')},
-
-💡 ** I am Stylish Font Bot**
-
-`I can help you to get stylish fonts. Just send me some text and see magic.`
-
-**👲 Maintained By:** {owner.mention(style='md')}
+@Pyro_Botz**
 """
 
-    # Buttons
-    buttons = [
+START_BUTTONS = InlineKeyboardMarkup(
+    [
         [
-            InlineKeyboardButton('My Father 👨‍✈️', url=f"https://t.me/{owner_username}")
+            InlineKeyboardButton('✅ 𝗝𝗢𝗜𝗡 𝗡𝗢𝗪 ✅', url='https://t.me/PyroBotz')
         ]
     ]
-    await m.reply_text(
-        text=text,
-        reply_markup=InlineKeyboardMarkup(buttons)
+)
+
+@Bot.on_message(filters.private & filters.command(["start"]))
+async def start(bot, update):
+    await update.reply_text(
+        text=START_TEXT.format(update.from_user.mention),
+        disable_web_page_preview=True,
+        quote=True,
+        reply_markup=START_BUTTONS
     )
-
-
 
 @Client.on_message(filters.private & filters.incoming & filters.text)
 async def style_buttons(c, m, cb=False):
@@ -64,7 +61,7 @@ async def style_buttons(c, m, cb=False):
         InlineKeyboardButton('H̆̈ă̈p̆̈p̆̈y̆̈', callback_data='style+happy'),
         InlineKeyboardButton('S̑̈ȃ̈d̑̈', callback_data='style+sad'),
         ],[
-        InlineKeyboardButton('Next ➡️', callback_data="nxt")
+        InlineKeyboardButton('Next »', callback_data="nxt")
     ]]
     if not cb:
         await m.reply_text(m.text, reply_markup=InlineKeyboardMarkup(buttons), quote=True)
@@ -101,7 +98,7 @@ async def nxt(c, m):
             InlineKeyboardButton('S̶t̶r̶i̶k̶e̶', callback_data='style+strike'),
             InlineKeyboardButton('F༙r༙o༙z༙e༙n༙', callback_data='style+frozen')
             ],[
-            InlineKeyboardButton('⬅️ Back', callback_data='nxt+0')
+            InlineKeyboardButton('« Back', callback_data='nxt+0')
         ]]
         await m.answer()
         await m.message.edit_reply_markup(InlineKeyboardMarkup(buttons))
