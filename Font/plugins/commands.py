@@ -21,7 +21,7 @@ START_BUTTONS = InlineKeyboardMarkup(
     ]
 )
 
-@Bot.on_message(filters.private & filters.command(["start"]))
+@Client.on_message(filters.private & filters.command(["start"]))
 async def start(bot, update):
     await update.reply_text(
         text=START_TEXT.format(update.from_user.mention),
