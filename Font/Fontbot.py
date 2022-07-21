@@ -208,7 +208,7 @@ async def style(c, m):
 
 @FontBot.on_callback_query(filters.regex('^done'))
 async def done(c, m):
-    await m.message.edit_text(new_text)
+    await m.message.delete_reply_markup()
 
 @FontBot.on_callback_query(filters.regex('^dlt'))
 async def delete(c, m):
