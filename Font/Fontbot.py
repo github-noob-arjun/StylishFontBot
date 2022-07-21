@@ -2,7 +2,13 @@ import os
 from Font.fonts import Fonts
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from Font.Fontbot.FontBot as Client
+
+FontBot = Client(
+      "FontBot",
+      bot_token="5510836288:AAFSAbJ_l1Cs1HA2N4N_9Ft1Ers1LPl_a2E",
+      api_id=18988485,
+      api_hash="b8b78728c7f08859bfa98f5cbb250dc8"
+)
 
 START_TEXT = """🙌 Hello {},
 
@@ -20,7 +26,7 @@ START_BUTTONS = InlineKeyboardMarkup(
     ]
 )
 
-@Client.on_message(filters.private & filters.command(["start"]))
+@FontBot.on_message(filters.private & filters.command(["start"]))
 async def start(bot, update):
     await update.reply_text(
         text=START_TEXT.format(update.from_user.mention),
@@ -29,7 +35,7 @@ async def start(bot, update):
         reply_markup=START_BUTTONS
     )
 
-@Client.on_message(filters.private & filters.incoming & filters.text)
+@FontBot.on_message(filters.private & filters.incoming & filters.text)
 async def style_buttons(c, m, cb=False):
     buttons = [[
         InlineKeyboardButton('𝚃𝚢𝚙𝚎𝚠𝚛𝚒𝚝𝚎𝚛', callback_data='style+typewriter'),
@@ -69,7 +75,7 @@ async def style_buttons(c, m, cb=False):
         await m.message.edit_reply_markup(InlineKeyboardMarkup(buttons))
 
 
-@Client.on_callback_query(filters.regex('^nxt'))
+@FontBot.on_callback_query(filters.regex('^nxt'))
 async def nxt(c, m):
     if m.data == "nxt":
         buttons = [[
@@ -105,7 +111,7 @@ async def nxt(c, m):
         await style_buttons(c, m, cb=True)
 
 
-@Client.on_callback_query(filters.regex('^style'))
+@FontBot.on_callback_query(filters.regex('^style'))
 async def style(c, m):
     await m.answer()
     cmd, style = m.data.split('+')
