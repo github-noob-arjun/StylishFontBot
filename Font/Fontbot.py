@@ -11,7 +11,7 @@ from config import Config
 from pyrogram import Client 
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
-app = Client(
+FontBot = Client(
       "ShowJson",
       bot_token=Config.BOT_TOKEN,
       api_id=Config.API_ID,
