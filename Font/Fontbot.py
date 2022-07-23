@@ -21,7 +21,9 @@ Just send me some text and see magic..!
 START_BUTTONS = InlineKeyboardMarkup(
     [
         [
-            InlineKeyboardButton('✅ 𝗝𝗢𝗜𝗡 𝗡𝗢𝗪 ✅', url='https://t.me/PyroBotz')
+            InlineKeyboardButton('✅ 𝗠𝗼𝗿𝗲 𝗕𝗼𝘁𝘇 ✅', url='https://t.me/PyroBotz')
+        ],[
+            InlineKeyboardButton('🐞 𝖱𝖾𝗉𝗈𝗋𝗍 𝖡𝗎𝗀 🐞', url='https://t.me/PYRO_BOTZ_CHAT')
         ]
     ]
 )
